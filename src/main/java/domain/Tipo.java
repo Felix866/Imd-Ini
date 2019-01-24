@@ -1,0 +1,5 @@
+package domain;
+
+public enum Tipo {
+    TIPO_DIOFANTICA, TIPO_CHINO, TIPO_CONGRUENCIA, TIPO_COMBINATORIA, TIPO_FINAL;
+}

@@ -7,6 +7,7 @@ import security.UserAccount;
 
 import javax.persistence.CascadeType;
 import javax.persistence.OneToOne;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 public class Actor {
@@ -21,7 +22,6 @@ public class Actor {
     // Attributes -------------------------------------------------------------
 
     private String	name;
-    private String	surname;
     private String	email;
 
     @NotBlank
@@ -32,16 +32,6 @@ public class Actor {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @NotBlank
-    @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
     }
 
     @Email
@@ -60,6 +50,8 @@ public class Actor {
 
     private UserAccount userAccount;
 
+
+    @Valid
     @NotNull
     @OneToOne(cascade = CascadeType.ALL, optional = false)
     public UserAccount getUserAccount() {
