@@ -66,7 +66,6 @@ public class Diofantica extends Problema{
         this.d = d;
     }
 
-    @NotNull
     public Integer getU() {
         return u;
     }
@@ -75,7 +74,6 @@ public class Diofantica extends Problema{
         this.u = u;
     }
 
-    @NotNull
     public Integer getV() {
         return v;
     }

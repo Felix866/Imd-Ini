@@ -46,7 +46,7 @@
 
     <bean id="administrador" class="domain.Administrator">
         <property name="name" value="Administrador1"/>
-        <property name="email" value="joslarmor@alum.us.es"/>
+        <property name="email" value="josgomrod3@alum.us.es"/>
         <property name="userAccount" ref="userAccount1"/>
         <property name="tests">
             <list>
@@ -55,13 +55,50 @@
         </property>
     </bean>
 
+    <!-- Solución -->
+
+    <bean id="solucion1" class="domain.Solucion">
+        <property name="solucion" value="xy=solucion1"/>
+        <property name="problema" ref="diofantica1"/>
+    </bean>
+
+    <!-- Teoría -->
+
+    <bean id="teoria1" class="domain.Teoria">
+        <property name="tipo" value="DIOFANTICA"/>
+        <property name="pdf">
+            <list>
+                <value>www.org.es</value>
+            </list>
+        </property>
+        <property name="problema" ref="diofantica1"/>
+    </bean>
+
+    <!-- Diofantica -->
+
+    <bean id="diofantica1" class="domain.Diofantica">
+        <property name="tipo" value="DIOFANTICA"/>
+        <property name="tieneSolucion" value="true"/>
+        <property name="a" value="1492"/>
+        <property name="b" value="1066"/>
+        <property name="c" value="-4"/>
+        <property name="d" value="2"/>
+        <property name="u" value="-5"/>
+        <property name="v" value="7"/>
+        <property name="x0" value="10"/>
+        <property name="y0" value="-14"/>
+        <property name="user" ref="user"/>
+        <property name="teoria" ref="teoria1"/>
+        <property name="solucion" ref="solucion1"/>
+    </bean>
+
     <!-- User -->
 
     <bean id="user" class="domain.User">
         <property name="name" value="user1"/>
         <property name="email" value="user1@alum.us.es"/>
         <property name="userAccount" ref="userAccount2"/>
-        <property name="diofantica">
+        <property name="problemas">
             <list>
                 <ref bean="diofantica1"/>
             </list>
@@ -73,67 +110,39 @@
         </property>
     </bean>
 
-    <!-- Diofantica -->
-
-    <bean id="diofantica1" class="domain.Diofantica">
-        <property name="a" value="1492"/>
-        <property name="b" value="1066"/>
-        <property name="c" value="-4"/>
-        <property name="d" value="2"/>
-        <property name="u" value="-5"/>
-        <property name="v" value="7"/>
-        <property name="x0" value="10"/>
-        <property name="y0" value="-14"/>
-        <property name="tieneSolucion" value="true"/>
-        <property name="user" ref="user"/>
-        <property name="teoria" ref="teoria"/>
-    </bean>
-
-    <!-- Teoría -->
-
-    <bean id="teoria1" class="domain.Teoria">
-        <property name="name" value="TIPO_DIOFANTICA"/>
-        <property name="pdf">
-            <list>
-                <ref bean="pdf1"/>
-            </list>
-        </property>
-        <property name="diofantica" ref="diofantica1"/>
-    </bean>
-
-    <!-- Pdf -->
-
-    <bean id="pdf1" class="domain.Pdf">
-        <property name="url" value="http://diofantica.org"/>
-        <property name="teoria" ref="teoria1"/>
-    </bean>
-
     <!-- Test -->
 
     <bean id="test1" class="domain.Test">
-        <property name="tipo" value="TIPO_DIOFANTICA"/>
+        <property name="tipo" value="DIOFANTICA"/>
         <property name="questions">
             <list>
                 <ref bean="question1"/>
                 <ref bean="question2"/>
-                <ref bean="question3"/>
-                <ref bean="question4"/>
-                <ref bean="question5"/>
             </list>
         </property>
-        <property name="administaror" ref="administrador"/>
+        <property name="administrator" ref="administrador"/>
         <property name="user" ref="user"/>
     </bean>
 
     <!-- Questions -->
 
     <bean id="question1" class="domain.Question">
-        <property name="tipo" value="TIPO_DIOFANTICA"/>
-        <property name="titulo" value="titulo1"/>
+        <property name="tipo" value="DIOFANTICA"/>
+        <property name="title" value="titulo1"/>
         <property name="answers">
             <list>
                 <ref bean="answer1"/>
                 <ref bean="answer2"/>
+            </list>
+        </property>
+        <property name="test" ref="test1"/>
+    </bean>
+
+    <bean id="question2" class="domain.Question">
+        <property name="tipo" value="DIOFANTICA"/>
+        <property name="title" value="titulo1"/>
+        <property name="answers">
+            <list>
                 <ref bean="answer3"/>
                 <ref bean="answer4"/>
             </list>
@@ -141,165 +150,27 @@
         <property name="test" ref="test1"/>
     </bean>
 
-    <bean id="question2" class="domain.Question">
-        <property name="tipo" value="TIPO_DIOFANTICA"/>
-        <property name="titulo" value="titulo1"/>
-        <property name="answers">
-            <list>
-                <ref bean="answer5"/>
-                <ref bean="answer6"/>
-                <ref bean="answer7"/>
-                <ref bean="answer8"/>
-            </list>
-        </property>
-        <property name="test" ref="test1"/>
-    </bean>
-    <bean id="question3" class="domain.Question">
-        <property name="tipo" value="TIPO_DIOFANTICA"/>
-        <property name="titulo" value="titulo1"/>
-        <property name="answers">
-            <list>
-                <ref bean="answer9"/>
-                <ref bean="answer10"/>
-                <ref bean="answer11"/>
-                <ref bean="answer12"/>
-            </list>
-        </property>
-        <property name="test" ref="test1"/>
-    </bean>
-
-    <bean id="question4" class="domain.Question">
-        <property name="tipo" value="TIPO_DIOFANTICA"/>
-        <property name="titulo" value="titulo1"/>
-        <property name="answers">
-            <list>
-                <ref bean="answer13"/>
-                <ref bean="answer14"/>
-                <ref bean="answer15"/>
-                <ref bean="answer16"/>
-            </list>
-        </property>
-        <property name="test" ref="test1"/>
-    </bean>
-
-    <bean id="question5" class="domain.Question">
-        <property name="tipo" value="TIPO_DIOFANTICA"/>
-        <property name="titulo" value="titulo1"/>
-        <property name="answers">
-            <list>
-                <ref bean="answer17"/>
-                <ref bean="answer18"/>
-                <ref bean="answer19"/>
-                <ref bean="answer20"/>
-            </list>
-        </property>
-        <property name="test" ref="test1"/>
-    </bean>
 
     <!-- Answers -->
 
     <bean id="answer1" class="domain.Answer">
-        <property name="title" value="title"/>
+        <property name="title" value="title1"/>
         <property name="correcta" value="true"/>
-        <property name="question1" ref="question1"/>
+        <property name="question" ref="question1"/>
     </bean>
     <bean id="answer2" class="domain.Answer">
         <property name="title" value="title"/>
         <property name="correcta" value="false"/>
-        <property name="question1" ref="question1"/>
+        <property name="question" ref="question1"/>
     </bean>
     <bean id="answer3" class="domain.Answer">
         <property name="title" value="title"/>
         <property name="correcta" value="false"/>
-        <property name="question1" ref="question1"/>
+        <property name="question" ref="question1"/>
     </bean>
     <bean id="answer4" class="domain.Answer">
         <property name="title" value="title"/>
         <property name="correcta" value="false"/>
-        <property name="question1" ref="question1"/>
-    </bean>
-
-    <bean id="answer5" class="domain.Answer">
-        <property name="title" value="title"/>
-        <property name="correcta" value="true"/>
-        <property name="question2" ref="question2"/>
-    </bean>
-    <bean id="answer6" class="domain.Answer">
-        <property name="title" value="title"/>
-        <property name="correcta" value="false"/>
-        <property name="question2" ref="question2"/>
-    </bean>
-    <bean id="answer7" class="domain.Answer">
-        <property name="title" value="title"/>
-        <property name="correcta" value="false"/>
-        <property name="question2" ref="question2"/>
-    </bean>
-    <bean id="answer8" class="domain.Answer">
-        <property name="title" value="title"/>
-        <property name="correcta" value="false"/>
-        <property name="question2" ref="question2"/>
-    </bean>
-
-    <bean id="answer9" class="domain.Answer">
-        <property name="title" value="title"/>
-        <property name="correcta" value="true"/>
-        <property name="question3" ref="question3"/>
-    </bean>
-    <bean id="answer10" class="domain.Answer">
-        <property name="title" value="title"/>
-        <property name="correcta" value="false"/>
-        <property name="question3" ref="question3"/>
-    </bean>
-    <bean id="answer11" class="domain.Answer">
-        <property name="title" value="title"/>
-        <property name="correcta" value="false"/>
-        <property name="question3" ref="question3"/>
-    </bean>
-    <bean id="answer12" class="domain.Answer">
-        <property name="title" value="title"/>
-        <property name="correcta" value="false"/>
-        <property name="question3" ref="question3"/>
-    </bean>
-
-    <bean id="answer13" class="domain.Answer">
-        <property name="title" value="title"/>
-        <property name="correcta" value="true"/>
-        <property name="question4" ref="question4"/>
-    </bean>
-    <bean id="answer14" class="domain.Answer">
-        <property name="title" value="title"/>
-        <property name="correcta" value="false"/>
-        <property name="question4" ref="question4"/>
-    </bean>
-    <bean id="answer15" class="domain.Answer">
-        <property name="title" value="title"/>
-        <property name="correcta" value="false"/>
-        <property name="question4" ref="question4"/>
-    </bean>
-    <bean id="answer16" class="domain.Answer">
-        <property name="title" value="title"/>
-        <property name="correcta" value="false"/>
-        <property name="question4" ref="question4"/>
-    </bean>
-
-    <bean id="answer17" class="domain.Answer">
-        <property name="title" value="title"/>
-        <property name="correcta" value="true"/>
-        <property name="question5" ref="question5"/>
-    </bean>
-    <bean id="answer18" class="domain.Answer">
-        <property name="title" value="title"/>
-        <property name="correcta" value="false"/>
-        <property name="question5" ref="question5"/>
-    </bean>
-    <bean id="answer19" class="domain.Answer">
-        <property name="title" value="title"/>
-        <property name="correcta" value="false"/>
-        <property name="question5" ref="question5"/>
-    </bean>
-    <bean id="answer20" class="domain.Answer">
-        <property name="title" value="title"/>
-        <property name="correcta" value="false"/>
-        <property name="question5" ref="question5"/>
+        <property name="question" ref="question1"/>
     </bean>
 </beans>

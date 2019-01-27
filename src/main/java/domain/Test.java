@@ -1,5 +1,6 @@
 package domain;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
 
 import javax.persistence.*;
@@ -21,7 +22,7 @@ public class Test extends DomainEntity{
 
     private String tipo;
 
-    @NotNull
+    @NotBlank
     @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
     public String getTipo() {
         return tipo;

@@ -1,11 +1,11 @@
 package domain;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
 
 import javax.persistence.*;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -44,7 +44,6 @@ public abstract class Problema extends DomainEntity {
     private User user;
 
     @Valid
-    @NotNull
     @OneToOne(optional = false)
     public Teoria getTeoria() {
         return teoria;
@@ -55,8 +54,7 @@ public abstract class Problema extends DomainEntity {
     }
 
     @Valid
-    @NotNull
-    @OneToOne(optional = false)
+    @OneToOne()
     public Solucion getSolucion() {
         return solucion;
     }
@@ -66,7 +64,6 @@ public abstract class Problema extends DomainEntity {
     }
 
     @Valid
-    @NotNull
     @ManyToOne(optional = false)
     public User getUser() {
         return user;

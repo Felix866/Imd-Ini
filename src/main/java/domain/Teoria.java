@@ -1,12 +1,11 @@
 package domain;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.SafeHtml;
-import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
 @Entity
@@ -32,8 +31,8 @@ public class Teoria extends DomainEntity{
         this.tipo = tipo;
     }
 
-    @URL
-    @NotBlank
+
+    @NotEmpty
     @ElementCollection
     public Collection<String> getPdf() {
         return pdf;
@@ -48,8 +47,7 @@ public class Teoria extends DomainEntity{
     private Problema problema;
 
     @Valid
-    @NotNull
-    @OneToOne(optional = false)
+    @OneToOne()
     public Problema getProblema() {
         return problema;
     }
