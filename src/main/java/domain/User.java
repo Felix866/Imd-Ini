@@ -1,10 +1,12 @@
 package domain;
 
-import javax.persistence.CascadeType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
+@Entity
+@Access(AccessType.PROPERTY)
 public class User extends Actor {
 
     // Constructors ----------------------------------------------------------------------
@@ -14,24 +16,25 @@ public class User extends Actor {
     // Attributes ------------------------------------------------------------------------
 
 
-
     // Relationships ----------------------------------------------------------------------
 
-    private Collection<EjercicioDiofantica> ejercicioDiofanticas;
+    private Collection<Diofantica> diofanticas;
     private Collection<Test> tests;
 
+    @Valid
     @NotNull
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    public Collection<EjercicioDiofantica> getEjercicioDiofanticas() {
-        return ejercicioDiofanticas;
+    @OneToMany(mappedBy = "user")
+    public Collection<Diofantica> getDiofanticas() {
+        return diofanticas;
     }
 
-    public void setEjercicioDiofanticas(Collection<EjercicioDiofantica> ejercicioDiofanticas) {
-        this.ejercicioDiofanticas = ejercicioDiofanticas;
+    public void setDiofanticas(Collection<Diofantica> diofanticas) {
+        this.diofanticas = diofanticas;
     }
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @Valid
     @NotNull
+    @OneToMany(mappedBy = "user")
     public Collection<Test> getTests() {
         return tests;
     }

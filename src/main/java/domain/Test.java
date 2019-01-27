@@ -1,12 +1,15 @@
 package domain;
 
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import org.hibernate.validator.constraints.SafeHtml;
+
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
-public class Test {
+@Entity
+@Access(AccessType.PROPERTY)
+public class Test extends DomainEntity{
 
     // Constructors ----------------------------------------------------------------------
 
@@ -16,43 +19,37 @@ public class Test {
 
     // Attributes ------------------------------------------------------------------------
 
-    private Collection<String> testQuestions;
-    private Tipo tipo;
+    private String tipo;
 
-    public Collection<String> getTestQuestions() {
-        return testQuestions;
-    }
-
-    public void setTestQuestions(Collection<String> testQuestions) {
-        this.testQuestions = testQuestions;
-    }
-
-    public Tipo getTipo() {
+    @NotNull
+    @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(Tipo tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
     // Relationships ----------------------------------------------------------------------
 
-    private Collection<String> questions;
+    private Collection<Question> questions;
     private User user;
     private Administrator administrator;
 
     @Valid
     @NotNull
-    @OneToMany
-    public Collection<String> getQuestions() {
+    @OneToMany(mappedBy = "test")
+    public Collection<Question> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(Collection<String> questions) {
+    public void setQuestions(Collection<Question> questions) {
         this.questions = questions;
     }
 
     @Valid
+    @NotNull
     @ManyToOne(optional = false)
     public User getUser() {
         return user;
@@ -63,6 +60,7 @@ public class Test {
     }
 
     @Valid
+    @NotNull
     @ManyToOne(optional = false)
     public Administrator getAdministrator() {
         return administrator;

@@ -1,53 +1,60 @@
 package domain;
 
-import javax.persistence.CascadeType;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.SafeHtml;
+import org.hibernate.validator.constraints.URL;
+
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
 
-public class Teoria {
+@Entity
+@Access(AccessType.PROPERTY)
+public class Teoria extends DomainEntity{
 
     // Constructors ----------------------------------------------------------------------
 
     public Teoria() { super();}
 
-    // Attributes ------------------------------------------------------------------------
+    // Attributes -------------------------------------------------------------------------
 
-    private Tipo tipo;
+    private String tipo;
+    private Collection<String> pdf;
 
-    public Tipo getTipo() {
+    @NotBlank
+    @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(Tipo tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    @URL
+    @NotBlank
+    @ElementCollection
+    public Collection<String> getPdf() {
+        return pdf;
+    }
+
+    public void setPdf(Collection<String> pdf) {
+        this.pdf = pdf;
     }
 
     // Relationships ----------------------------------------------------------------------
 
-    private EjercicioDiofantica ejercicioDiofantica;
-    private Pdf pdf;
+    private Problema problema;
 
     @Valid
     @NotNull
-    @OneToOne(cascade = CascadeType.ALL, optional = false)
-    public EjercicioDiofantica getEjercicioDiofantica() {
-        return ejercicioDiofantica;
+    @OneToOne(optional = false)
+    public Problema getProblema() {
+        return problema;
     }
 
-    public void setEjercicioDiofantica(EjercicioDiofantica ejercicioDiofantica) {
-        this.ejercicioDiofantica = ejercicioDiofantica;
-    }
-
-    @Valid
-    @NotNull
-    @OneToMany(mappedBy = "teoria", cascade = CascadeType.ALL)
-    public Pdf getPdf() {
-        return pdf;
-    }
-
-    public void setPdf(Pdf pdf) {
-        this.pdf = pdf;
+    public void setProblema(Problema problema) {
+        this.problema = problema;
     }
 }

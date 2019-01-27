@@ -15,16 +15,16 @@ public class Pdf {
 
     // Attributes ------------------------------------------------------------------------
 
-    private String url;
+    private Tipo url;
 
     @URL
     @NotBlank
     @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
-    public String getUrl() {
+    public Tipo getUrl() {
         return url;
     }
 
-    public void setUrl(String url) {
+    public void setUrl(Tipo url) {
         this.url = url;
     }
 

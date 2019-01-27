@@ -3,13 +3,14 @@ package domain;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
 
-import javax.persistence.CascadeType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
-public class Question {
+@Entity
+@Access(AccessType.PROPERTY)
+public class Question extends DomainEntity{
 
     // Constructors ----------------------------------------------------------------------
 
@@ -17,14 +18,16 @@ public class Question {
 
     // Attributes ------------------------------------------------------------------------
 
-    private Collection<Tipo> tipo;
+    private String tipo;
     private String title;
 
-    public Collection<Tipo> getTipo() {
+    @NotBlank
+    @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(Collection<Tipo> tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
@@ -40,15 +43,27 @@ public class Question {
 
     // Relationships ----------------------------------------------------------------------
     private Collection<Answer> answers;
+    private Test test;
 
     @Valid
     @NotNull
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "question")
     public Collection<Answer> getAnswers() {
         return answers;
     }
 
     public void setAnswers(Collection<Answer> answers) {
         this.answers = answers;
+    }
+
+    @Valid
+    @NotNull
+    @ManyToOne(optional = false)
+    public Test getTest() {
+        return test;
+    }
+
+    public void setTest(Test test) {
+        this.test = test;
     }
 }

@@ -2,20 +2,20 @@ package domain;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
+import org.springframework.format.annotation.NumberFormat;
 
-import javax.persistence.CascadeType;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
-public class EjercicioDiofantica {
+@Entity
+@Access(AccessType.PROPERTY)
+public class Diofantica extends Problema{
 
 // Constructors -----------------------------------------------------------
 
-    public EjercicioDiofantica() {
+    public Diofantica() {
         super();
     }
 
@@ -29,9 +29,7 @@ public class EjercicioDiofantica {
     private Integer v;
     private Integer x0;
     private Integer y0;
-    private Boolean tieneSolucion;
 
-    @NotBlank
     @NotNull
     public Integer getA() {
         return a;
@@ -41,7 +39,6 @@ public class EjercicioDiofantica {
         this.a = a;
     }
 
-    @NotBlank
     @NotNull
     public Integer getB() {
         return b;
@@ -51,7 +48,6 @@ public class EjercicioDiofantica {
         this.b = b;
     }
 
-    @NotBlank
     @NotNull
     public Integer getC() {
         return c;
@@ -61,7 +57,6 @@ public class EjercicioDiofantica {
         this.c = c;
     }
 
-    @NotBlank
     @NotNull
     public Integer getD() {
         return d;
@@ -71,7 +66,6 @@ public class EjercicioDiofantica {
         this.d = d;
     }
 
-    @NotBlank
     @NotNull
     public Integer getU() {
         return u;
@@ -81,7 +75,6 @@ public class EjercicioDiofantica {
         this.u = u;
     }
 
-    @NotBlank
     @NotNull
     public Integer getV() {
         return v;
@@ -91,8 +84,6 @@ public class EjercicioDiofantica {
         this.v = v;
     }
 
-    @NotBlank
-    @NotNull
     public Integer getX0() {
         return x0;
     }
@@ -101,8 +92,6 @@ public class EjercicioDiofantica {
         this.x0 = x0;
     }
 
-    @NotBlank
-    @NotNull
     public Integer getY0() {
         return y0;
     }
@@ -111,37 +100,5 @@ public class EjercicioDiofantica {
         this.y0 = y0;
     }
 
-    public Boolean getTieneSolucion() {
-        return tieneSolucion;
-    }
-
-    public void setTieneSolucion(Boolean tieneSolucion) {
-        this.tieneSolucion = tieneSolucion;
-    }
-
     // Relationships ----------------------------------------------------------
-
-    private Teoria teoria;
-    private User user;
-
-    @Valid
-    @NotNull
-    @OneToOne(cascade = CascadeType.ALL, optional = false)
-    public Teoria getTeoria() {
-        return teoria;
-    }
-
-    public void setTeoria(Teoria teoria) {
-        this.teoria = teoria;
-    }
-
-    @Valid
-    @ManyToOne(optional = false)
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

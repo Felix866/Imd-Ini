@@ -5,12 +5,14 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
 import security.UserAccount;
 
-import javax.persistence.CascadeType;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-public class Actor {
+
+@Entity
+@Access(AccessType.PROPERTY)
+public abstract class Actor extends DomainEntity{
 
 
     // Constructors -----------------------------------------------------------
@@ -21,8 +23,8 @@ public class Actor {
 
     // Attributes -------------------------------------------------------------
 
-    private String	name;
-    private String	email;
+    private String name;
+    private String email;
 
     @NotBlank
     @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
