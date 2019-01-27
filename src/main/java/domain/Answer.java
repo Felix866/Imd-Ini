@@ -20,16 +20,16 @@ public class Answer extends DomainEntity{
 
     // Attributes ------------------------------------------------------------------------
 
-    private Tipo title;
+    private String title;
     private boolean correcta;
 
     @NotBlank
     @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
-    public Tipo getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    public void setTitle(Tipo title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 

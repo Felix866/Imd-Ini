@@ -18,18 +18,18 @@ public class User extends Actor {
 
     // Relationships ----------------------------------------------------------------------
 
-    private Collection<Diofantica> diofanticas;
+    private Collection<Problema> problemas;
     private Collection<Test> tests;
 
     @Valid
     @NotNull
     @OneToMany(mappedBy = "user")
-    public Collection<Diofantica> getDiofanticas() {
-        return diofanticas;
+    public Collection<Problema> getProblemas() {
+        return problemas;
     }
 
-    public void setDiofanticas(Collection<Diofantica> diofanticas) {
-        this.diofanticas = diofanticas;
+    public void setProblemas(Collection<Problema> problemas) {
+        this.problemas = problemas;
     }
 
     @Valid
