@@ -25,7 +25,6 @@
 		<value>/views/user/tiles.xml</value>
 		<value>/views/profile/tiles.xml</value>
 		<value>/views/administrator/tiles.xml</value>
-
 	</util:list>
 
 </beans>

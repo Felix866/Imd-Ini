@@ -18,6 +18,31 @@
 	">
 
 	<util:list id="converters">
+		<bean class="converters.ActorToStringConverter" />
+		<bean class="converters.AdministratorToStringConverter"/>
+		<bean class="converters.AnswerToStringConverter"/>
+		<bean class="converters.AuthorityToStringConverter"/>
+		<bean class="converters.ConfigurationToStringConverter"/>
+		<bean class="converters.DiofanticaToStringConverter"/>
+		<bean class="converters.ProblemaToStringConverter"/>
+		<bean class="converters.QuestionToStringConverter"/>
+		<bean class="converters.SolucionToStringConverter"/>
+		<bean class="converters.TeoriaToStringConverter"/>
+		<bean class="converters.TestToStringConverter"/>
+		<bean class="converters.UserAccountToStringConverter"/>
+		<bean class="converters.UserToStringConverter"/>
+		<bean class="converters.StringToActorConverter"/>
+		<bean class="converters.StringToAdministratorConverter"/>
+		<bean class="converters.StringToAnswerConverter"/>
+		<bean class="converters.StringToConfigurationConverter"/>
+		<bean class="converters.StringToDiofanticaConverter"/>
+		<bean class="converters.StringToProblemaConverter"/>
+		<bean class="converters.StringToQuestionConverter"/>
+		<bean class="converters.StringToSolucionConverter"/>
+		<bean class="converters.StringToTeoriaConverter"/>
+		<bean class="converters.StringToTestConverter"/>
+		<bean class="converters.StringToUserAccountConverter"/>
+		<bean class="converters.StringToUserConverter"/>
 	</util:list>
 	
 </beans>
