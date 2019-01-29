@@ -1,5 +1,7 @@
 package services;
 
+import domain.Problema;
+import domain.Test;
 import domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +11,8 @@ import repositories.UserRepository;
 import security.LoginService;
 import security.UserAccount;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Service
@@ -39,6 +43,8 @@ public class UserService {
 
         result = new User();
         result.setUserAccount(this.userAccountService.create("USER"));
+        result.setProblemas(new ArrayList<Problema>());
+        result.setTests(new ArrayList<Test>());
         return result;
     }
 

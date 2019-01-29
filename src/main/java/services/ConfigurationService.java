@@ -63,10 +63,6 @@ public class ConfigurationService {
 
     // Other business methods -------------------------------------------------
 
-    public void flush() {
-        configurationRepository.flush();
-    }
-
     public Configuration getCS() {
         Collection<Configuration> configurationSystems;
 
