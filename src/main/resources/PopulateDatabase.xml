@@ -55,13 +55,6 @@
         </property>
     </bean>
 
-    <!-- Solución -->
-
-    <bean id="solucion1" class="domain.Solucion">
-        <property name="solucion" value="xy=solucion1"/>
-        <property name="problema" ref="diofantica1"/>
-    </bean>
-
     <!-- Teoría -->
 
     <bean id="teoria1" class="domain.Teoria">
@@ -77,7 +70,11 @@
     <!-- Diofantica -->
 
     <bean id="diofantica1" class="domain.Diofantica">
-        <property name="tipo" value="DIOFANTICA"/>
+        <property name="tipos">
+            <list>
+                <value>prueba</value>
+            </list>
+        </property>
         <property name="tieneSolucion" value="true"/>
         <property name="a" value="1492"/>
         <property name="b" value="1066"/>
@@ -89,7 +86,6 @@
         <property name="y0" value="-14"/>
         <property name="user" ref="user"/>
         <property name="teoria" ref="teoria1"/>
-        <property name="solucion" ref="solucion1"/>
     </bean>
 
     <!-- User -->

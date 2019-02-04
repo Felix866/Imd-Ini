@@ -57,7 +57,7 @@ public class DiofanticaService {
 
         if(diofantica.getId()==0){
             result = diofanticaRepository.save(diofantica);
-            result.setTeoria(teoriaService.findOneByTipo(diofantica.getTipo()));
+            result.setTeoria(teoriaService.findOneByTipo(diofantica.getTipos()));
         }else {
             result = this.diofanticaRepository.save(diofantica);
         }

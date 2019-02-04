@@ -60,7 +60,7 @@ public class TeoriaService {
 
     // Other business methods -------------------------------------------------
 
-    public Teoria findOneByTipo(String tipo){
+    public Teoria findOneByTipo(Collection<String> tipo){
         return teoriaRepository.findOneByTipo(tipo);
     }
 }

@@ -2,10 +2,12 @@ package domain;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.SafeHtml;
 
 import javax.persistence.*;
 import javax.validation.Valid;
+import java.util.Collection;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -17,7 +19,7 @@ public abstract class Problema extends DomainEntity {
 
     // Attributes ------------------------------------------------------------------------
     private boolean tieneSolucion;
-    private String tipo;
+    private Collection<String> tipos;
 
     public boolean isTieneSolucion() {
         return tieneSolucion;
@@ -27,20 +29,22 @@ public abstract class Problema extends DomainEntity {
         this.tieneSolucion = tieneSolucion;
     }
 
-    @NotBlank
-    @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
-    public String getTipo() {
-        return tipo;
+    @NotEmpty
+    @ElementCollection
+    public Collection<String> getTipos() {
+        return tipos;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTipos(Collection<String> tipos) {
+        this.tipos = tipos;
     }
+
+
+
 
     // Relationships ----------------------------------------------------------------------
 
     private Teoria teoria;
-    private Solucion solucion;
     private User user;
 
     @Valid
@@ -51,16 +55,6 @@ public abstract class Problema extends DomainEntity {
 
     public void setTeoria(Teoria teoria) {
         this.teoria = teoria;
-    }
-
-    @Valid
-    @OneToOne()
-    public Solucion getSolucion() {
-        return solucion;
-    }
-
-    public void setSolucion(Solucion solucion) {
-        this.solucion = solucion;
     }
 
     @Valid
